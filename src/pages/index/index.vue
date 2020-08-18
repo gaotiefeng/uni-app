@@ -57,14 +57,15 @@
     methods: {
       formSubmit: function(e) {
         console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
-        var formdata = e.detail.value
+        var data = e.detail.value
+        
         uni.request({
           url: 'http://pxmsw.com/site/test',
           method: 'POST',
-          data: formdata,
+          data: data,
           header: {
-            'Content-Type': 'application/json',
-            //'Content-Type':'application/x-www-form-urlencoded',
+            //'Content-Type': 'application/json',
+            'Content-Type':'application/x-www-form-urlencoded',
           },
           success: (res) => {
             console.log(res.data);
@@ -72,7 +73,7 @@
         });
 
         uni.showModal({
-          content: '表单数据内容：' + JSON.stringify(formdata),
+          content: '表单数据内容：' + JSON.stringify(data),
           showCancel: false
         });
       },
